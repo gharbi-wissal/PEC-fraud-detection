@@ -26,13 +26,6 @@ def findPec(X):
         query = query.drop(['Référence GA'], axis=1)
         return query
 
-# def encoderFunc(X):
-#     # for i in  (X.columns):
-#     #     X[i] = le.transform(X[i])   
-#     # X = le.transform(X)   
-#     # for i in list(le.classes_):
-#     #     X[i]=le.transform(X[i])[0]
-#     return X
 
 def loadData():
     df = pd.read_csv('data/pec_prep_out.csv')
@@ -59,21 +52,10 @@ def predict():
     else:
         print('Train the model first')
         return 'No model here to use'
-# @app.route('/api/graph', methods=['POST'])
-# def graph():
-#     x = request.json['x']
-#     color = request.json['color']
-#     df= loadData()
-#     fig = px.histogram(df, x=x, color=color, histnorm='probability density')
-#     fig.to_json()
-#     # canvas = FigureCanvas(fig)
-#     # output = BytesIO()
-#     # canvas.print_png(output)
-#     # response = make_response(fig.getvalue())
-#     # response.mimetype = 'image/png'
-#     # return response
-#     # return send_file(fig, mimetype='image/gif')
-#     return jsonify({'figure': str(fig)})   
+
+@app.route('/api/metrics', methods=['Get'])
+def getMetrics():
+    return metrics 
 
 
 if __name__ == '__main__':
@@ -82,9 +64,12 @@ if __name__ == '__main__':
     except:
         port = PORT  
 
-    model = load('modeling/model/xgb_model.pkl')
+    model = load('modeling/model/model_final.pkl')
     print('Model loaded')
     model_columns = load("modeling/model/model_columns.pkl") 
     print('Model columns loaded')
+    metrics = load("modeling/model/metrics.pkl") 
+    print('Metrics columns loaded')
+    print(metrics)
 
     app.run(port=port, debug=True)

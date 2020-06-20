@@ -1,0 +1,22 @@
+{{accBar}}
+{{accBar}}
+
+    <div 
+     fxLayoutAlign="center center"
+     fxLayout="column"
+    >
+        <h4>Prediction Result</h4>
+        <div style="display: block" >
+            <canvas *ngIf="isDataAvailable"
+             mdbChart
+                [chartType]="chartType"
+                [datasets]= "chartDatasets"
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions"
+                [legend]="true"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+            </canvas>
+        </div>  
+    </div>

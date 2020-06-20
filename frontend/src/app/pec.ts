@@ -3,8 +3,9 @@ export interface Pec {
     prediction: string
 
 }
-export interface Fig {
-    figure: string
+export interface Metrics {
+    accuracy: number
+    roc_auc: number
 
 }
 export class Prediction {
