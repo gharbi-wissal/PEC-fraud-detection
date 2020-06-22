@@ -35,52 +35,52 @@
             </thead>
             <tbody>
                 <tr mdbTableCol >
-                    <td>Compagnie d'assurance</td>
+                    <td><strong>Compagnie d'assurance</strong></td>
                     <td class="text-center">{{pred["Compagnie d'assurance"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Compagnie adverse']"> 
-                    <td>Compagnie adverse</td>
+                    <td><strong>Compagnie adverse</strong></td>
                     <td class="text-center">{{pred["Compagnie adverse"]}}</td>
                 </tr>
                 
                 <tr mdbTableCol *ngIf="pred['Expert']">
-                    <td>Expert</td>
+                    <td><strong>Expert</strong></td>
                     <td class="text-center">{{pred["Expert"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Marque']">
-                    <td>Marque</td>
+                    <td><strong>Marque</strong></td>
                     <td class="text-center">{{pred["Marque"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Mode de gestion']">
-                    <td>Mode de gestion</td>
+                    <td><strong>Mode de gestion</strong></td>
                     <td class="text-center">{{pred["Mode de gestion"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Garantie impliquée']">
-                    <td>Garantie impliquée</td>
+                    <td><strong>Garantie impliquée</strong></td>
                     <td class="text-center">{{pred["Garantie impliquée"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Position GA']">
-                    <td>Position GA</td>
+                    <td><strong>Position GA</strong></td>
                     <td class="text-center">{{pred["Position GA"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Montant total devis']">
-                    <td>Montant total devis</td>
+                    <td><strong>Montant total devis</strong></td>
                     <td class="text-center">{{pred["Montant total devis"]}}</td>
                 </tr>
                 <tr mdbTableCol *ngIf="pred['Point Choc']">
-                    <td>Point Choc</td>
+                    <td><strong>Point Choc</strong></td>
                     <td class="text-center">{{pred["Point Choc"]}}</td>
                  </tr>
                  <tr mdbTableCol *ngIf="pred['Nbr réclamations antérieures']">
-                     <td>Nbr réclamations antérieures</td>
+                     <td><strong>Nbr réclamations antérieures</strong></td>
                      <td class="text-center">{{pred["Nbr réclamations antérieures"]}}</td>
                  </tr>
                  <tr mdbTableCol *ngIf="pred['Retard reclamation']">
-                   <td>Retard reclamation</td>
+                   <td><strong>Retard reclamation</strong></td>
                    <td class="text-center">{{pred["Retard reclamation"]}}</td>
                </tr>
                <tr mdbTableCol>
-                   <td>Prédiction</td>
+                   <td><strong>Prédiction</strong></td>
                    <td class="text-center">                                  
                    <span *ngIf="pred['prediction'] == 0; else elseBlock" class=" label label-success"><i class="fa fa-user-check fa-2x text-success"></i> Non Fraud</span>
                    <ng-template #elseBlock><i class="fa fa-user-secret fa-2x text-danger"></i> Fraud</ng-template>

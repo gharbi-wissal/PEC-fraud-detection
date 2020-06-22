@@ -18,18 +18,13 @@ export class HomeComponent implements OnInit {
   isDataAvailable = false
   data : number[]
 
-
-  constructor(
-    private homeService: HomeService,
-    private http: HttpClient
-  ) {}
+  constructor(private homeService: HomeService ) {}
   ngOnInit(): void {
     this.homeService.getMetrics().subscribe(
       pred => {
         this.metrics=pred;
         this.acc=pred.accuracy
         this.accBar= Math.floor((1- pred.accuracy )* 100) / 100 
-        // this.data =[pred.accuracy, Math.floor((1- pred.accuracy )* 100) / 100 ]
         this.data =[0.8, 0.19]
 
         this.isDataAvailable =true

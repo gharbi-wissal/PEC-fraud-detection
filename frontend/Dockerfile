@@ -1,12 +1,12 @@
-FROM node:8
+FROM node:14
 
 # set up angular cli
 RUN npm install @angular/cli@9.1.7
 
 WORKDIR /app
 COPY package.json /app
-COPY npm.lock /app
-RUN npm install 
+COPY package-lock.json /app
+RUN npm install --no-package-lock
 COPY . /app
 
 # create watch files

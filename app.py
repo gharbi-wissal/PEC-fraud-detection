@@ -19,18 +19,21 @@ engine = create_engine('postgresql://postgres@localhost:5432/pec')
 
 # initialize flask application
 app = Flask(__name__)
+def encoder(df2):
+    df=df2
+    le = LabelEncoder()
+    for i in  (df.columns.drop('Référence GA')):  
+        le.fit(df[i].astype(str))
+        df[i] = le.transform(df[i].astype(str))
+    return df2
 
 def findPec(X):
         df = pd.read_sql_query("select * from pec_2018",con=engine)
+        if(df.empty):
+            df = pd.read_csv('modeling/output/pec_2018.csv')
         query = df.loc[df['Référence GA'] == X]
         query = query.drop(['Référence GA'], axis=1)
         return query
-
-
-def loadData():
-    df = pd.read_csv('data/pec_prep_out.csv')
-    df=df.drop([ "Unnamed: 0"], axis=1)
-    return df
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
@@ -38,12 +41,11 @@ def predict():
         try:
             json_ = request.json['reference']
             print(json_)
-            df = findPec(json_)
-            
+            df= findPec(json_)
             if (df.empty):
                   return jsonify({'error': "PEC not found"}) 
             else:
-                prediction = list(model.predict(df))
+                prediction = (model.predict(df))
                 df['prediction'] = prediction
                 return Response(df.to_json(orient="records"), mimetype='application/json')
         except:
@@ -51,12 +53,11 @@ def predict():
             return jsonify({'trace': traceback.format_exc()})
     else:
         print('Train the model first')
-        return 'No model here to use'
+        return ('No model here to use')
 
 @app.route('/api/metrics', methods=['Get'])
 def getMetrics():
     return metrics 
-
 
 if __name__ == '__main__':
     try:
