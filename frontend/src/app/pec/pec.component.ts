@@ -23,6 +23,9 @@ export class PecComponent implements OnInit {
       pred => {
         if ( pred['error'])
           this.show=false
+      else
+      if ( pred['trace'])
+          this.show=false
       else {
         this.show=true
         this.predic =pred;

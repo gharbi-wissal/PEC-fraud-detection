@@ -17,6 +17,8 @@ HOST = '0.0.0.0'
 PORT = 8081
 engine = create_engine('postgresql://postgres@localhost:5432/pec')
 
+
+
 # initialize flask application
 app = Flask(__name__)
 def encoder(df2):
@@ -28,11 +30,12 @@ def encoder(df2):
     return df2
 
 def findPec(X):
-        df = pd.read_sql_query("select * from pec_2018",con=engine)
-        if(df.empty):
+        try:
+            df = pd.read_sql_query("select * from pec_2018",con=engine)
+        except:
             df = pd.read_csv('modeling/output/pec_2018.csv')
         query = df.loc[df['Référence GA'] == X]
-        query = query.drop(['Référence GA'], axis=1)
+        query = query.drop(['Référence GA'], axis=1)       
         return query
 
 @app.route('/api/predict', methods=['POST'])
