@@ -1,6 +1,8 @@
 FROM node:14
 
 # set up angular cli
+# RUN npm cache clean --force
+
 RUN npm install @angular/cli@9.1.7
 
 WORKDIR /app

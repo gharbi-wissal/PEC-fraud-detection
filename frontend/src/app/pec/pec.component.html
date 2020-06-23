@@ -1,10 +1,20 @@
 <br>
-<mdb-card cascade="true" narrower="true" class="col-md-12 text-center">
+<header>
+<mdb-card
+    class="color-block winter-neva-gradient z-depth-2 py-4 mb-3 mx-2 text-center" cascade="true" narrower="true"
+  >
     <div class="view view-cascade ">
-        <h2 class="card-header-title">Prédiction des nouveaux dossiers Prise en charge</h2>
-            <p></p>
+    
+        <h2 class="card-header-title blue-grey-text"><strong>Prédiction des nouveaux dossiers Prise en charge</strong></h2>
+            
+           
             <div class="text-center align-center">
                 <div class="row justify-content-center">
+                <p class="col-md-9 text-center text-dark" >
+            Entrez un référence d'un dossier prise en chagre de GA et obtenez un résultat si ce dossier est plus susceptible d'être un cas de fraude ou pas. 
+            <br> 
+            Le résultat est donné par un algorithme de Machine Learning et est obtenu en temps réel.
+            </p>
                 <form class="form" (submit)="predict(pecReference.value); pecReference.value=''">
                  <div class="form-row align-items-center">
                  <div class="col-auto">
@@ -14,13 +24,26 @@
                 </div>
                 </div>
                 <div class="col-auto">
-                <button type="submit" mdbBtn color="cyan" size="sm" class="mb-0">Submit</button>
+                <button type="submit" mdbBtn color="cyan" size="sm" class="mb-0">Valider</button>
                 </div>
                 </div>
                 </form>
                 </div>        
         </div>
     </div>
+    <mdb-card-body cascade="true" class="text-center">
+    <mdb-card-text class="row justify-content-center">
+     </mdb-card-text>
+
+
+</mdb-card-body>
+</mdb-card>
+</header>
+
+<br>
+<main>
+<mdb-card cascade="true" narrower="true" class="col-md-12 text-center" *ngIf="predic">
+            <h2 class="card-header-title cyan-text"><strong>Résultat de prédiction</strong></h2>
 
 <mdb-card-body cascade="true" class="text-center">
     <mdb-card-text class="row justify-content-center">
@@ -82,17 +105,29 @@
                <tr mdbTableCol>
                    <td><strong>Prédiction</strong></td>
                    <td class="text-center">                                  
-                   <span *ngIf="pred['prediction'] == 0; else elseBlock" class=" label label-success"><i class="fa fa-user-check fa-2x text-success"></i> Non Fraud</span>
-                   <ng-template #elseBlock><i class="fa fa-user-secret fa-2x text-danger"></i> Fraud</ng-template>
+                   <span *ngIf="pred['prediction'] == 0; else elseBlock" class=" label label-success">
+                   <i class="fa fa-user-check fa-2x text-success"></i> 80% Non Fraude
+                   <br>
+                <i class="fa fa-user-secret fa-lg text-danger"></i> 20% Fraude</span>
+
+
+                   <ng-template #elseBlock>
+                   <i class="fa fa-user-secret fa-2x text-danger"></i> 80% Fraude
+                    <br>
+                    <i class="fa fa-user-check fa-lg text-success"></i> 20% Non Fraude
+                   
+                   </ng-template>
                    </td>
                </tr>
            
            </tbody>
        </table>
        </div>
-       <ng-template #other_content><h3>Dossier non trouvé</h3></ng-template>
+       <ng-template #other_content><h3>Dossier non trouvé <i class="fa fa-frown-o" aria-hidden="true"></i>
+</h3></ng-template>
        </mdb-card-text>
 
 
 </mdb-card-body>
 </mdb-card>
+</main>
