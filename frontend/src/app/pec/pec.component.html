@@ -106,15 +106,15 @@
                    <td><strong>Prédiction</strong></td>
                    <td class="text-center">                                  
                    <span *ngIf="pred['prediction'] == 0; else elseBlock" class=" label label-success">
-                   <i class="fa fa-user-check fa-2x text-success"></i> 80% Non Fraude
-                   <br>
-                <i class="fa fa-user-secret fa-lg text-danger"></i> 20% Fraude</span>
-
+                   <i class="fa fa-user-check fa-2x text-success"></i> Non Fraude
+                 <!-- <br>
+                <i class="fa fa-user-secret fa-lg text-danger"></i> 20% Fraude-->
+                </span> 
 
                    <ng-template #elseBlock>
-                   <i class="fa fa-user-secret fa-2x text-danger"></i> 80% Fraude
-                    <br>
-                    <i class="fa fa-user-check fa-lg text-success"></i> 20% Non Fraude
+                   <i class="fa fa-user-secret fa-2x text-danger"></i> Fraude
+                    <!--<br>
+                    <i class="fa fa-user-check fa-lg text-success"></i> 20% Non Fraude-->
                    
                    </ng-template>
                    </td>
@@ -131,3 +131,5 @@
 </mdb-card-body>
 </mdb-card>
 </main>
+<br>
+<br>

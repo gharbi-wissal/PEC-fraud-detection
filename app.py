@@ -21,22 +21,31 @@ engine = create_engine('postgresql://postgres@localhost:5432/pec')
 
 # initialize flask application
 app = Flask(__name__)
-def encoder(df2):
-    df=df2
+def loadData():
+    try:
+        df = pd.read_sql_query("select * from pec_2018",con=engine)
+    except:
+        df = pd.read_csv('modeling/output/pec_2018.csv')      
     le = LabelEncoder()
     for i in  (df.columns.drop('Référence GA')):  
         le.fit(df[i].astype(str))
         df[i] = le.transform(df[i].astype(str))
-    return df2
+    prediction = (model.predict(df))
+    df['prediction'] = prediction
+    print(df['Référence GA'].loc[df['prediction'] == 1])
+    print(df.shape)      
+    return df
 
 def findPec(X):
         try:
-            df = pd.read_sql_query("select * from pec_2018",con=engine)
+            df2 = pd.read_sql_query("select * from pec_2018",con=engine)
         except:
-            df = pd.read_csv('modeling/output/pec_2018.csv')
+            df2 = pd.read_csv('modeling/output/pec_2018.csv')
         query = df.loc[df['Référence GA'] == X]
-        query = query.drop(['Référence GA'], axis=1)       
-        return query
+        query = query.drop(['Référence GA'], axis=1) 
+        query2 = df2.loc[df2['Référence GA'] == X]
+        query2 = query2.drop(['Référence GA'], axis=1) 
+        return query, query2
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
@@ -44,13 +53,14 @@ def predict():
         try:
             json_ = request.json['reference']
             print(json_)
-            df= findPec(json_)
+            df,df2= findPec(json_)
+
             if (df.empty):
                   return jsonify({'error': "PEC not found"}) 
             else:
-                prediction = (model.predict(df))
-                df['prediction'] = prediction
-                return Response(df.to_json(orient="records"), mimetype='application/json')
+                # prediction = (model.predict(df))
+                df2['prediction'] = df['prediction']
+                return Response(df2.to_json(orient="records"), mimetype='application/json')
         except:
 
             return jsonify({'trace': traceback.format_exc()})
@@ -75,5 +85,6 @@ if __name__ == '__main__':
     metrics = load("modeling/model/metrics.pkl") 
     print('Metrics columns loaded')
     print(metrics)
+    df=loadData()
 
     app.run(port=port, debug=True)
