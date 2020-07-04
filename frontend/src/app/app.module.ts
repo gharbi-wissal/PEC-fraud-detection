@@ -13,7 +13,6 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { HomeComponent } from './home/home.component';
 
 
 PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
@@ -25,8 +24,7 @@ PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) o
     AppComponent,
     PecComponent,
     DashboardComponent,
-    NavbarComponent,
-    HomeComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

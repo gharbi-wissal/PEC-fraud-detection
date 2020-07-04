@@ -15,19 +15,17 @@ def func(inputfile, outputfile):
          all_data["Date Accident"]=all_data["Date Accident"].apply(lambda x: datetime.strftime(pd.to_datetime(x,dayfirst=True), "%m/%d/%Y"))
          all_data["Date demande"]=all_data["Date demande"].apply(lambda x: datetime.strftime(pd.to_datetime(x, format="%d/%m/%Y %H:%M"), "%m/%d/%Y"))
 
-         all_data["Day Accident"]= pd.DatetimeIndex(all_data['Date Accident']).day
-         all_data["Month Accident"]= pd.DatetimeIndex(all_data['Date Accident']).month
-         all_data["Year Accident"]= pd.DatetimeIndex(all_data['Date Accident']).year
+         all_data["Jour Accident"]= pd.DatetimeIndex(all_data['Date Accident']).day
+         all_data["Mois Accident"]= pd.DatetimeIndex(all_data['Date Accident']).month
+         all_data["Année Accident"]= pd.DatetimeIndex(all_data['Date Accident']).year
 
-         all_data["Day demande"]= pd.DatetimeIndex(all_data['Date demande']).day
-         all_data["Month demande"]= pd.DatetimeIndex(all_data['Date demande']).month
-         all_data["Year demande"]= pd.DatetimeIndex(all_data['Date demande']).year
+         all_data["Jour demande"]= pd.DatetimeIndex(all_data['Date demande']).day
+         all_data["Mois demande"]= pd.DatetimeIndex(all_data['Date demande']).month
+         all_data["Année demande"]= pd.DatetimeIndex(all_data['Date demande']).year
 
          all_data['Retard reclamation']= pd.DatetimeIndex(all_data['Date demande']) - pd.DatetimeIndex (all_data['Date Accident'])
 
          all_data['Retard reclamation']=(all_data['Retard reclamation']).apply(lambda x: x.days)
-
-         all_data[['Date Accident','Date demande','Retard reclamation']]
 
          indexNames = all_data[ (all_data['Retard reclamation'] > 30)].index
          all_data.drop(indexNames , inplace=True)
@@ -63,9 +61,9 @@ def func(inputfile, outputfile):
          'Position GA',
          'SST',
          'Nbr réclamations antérieures',
-         'Day Accident',
-         'Month Accident',
-         'Day demande',
+         'Jour Accident',
+         'Mois Accident',
+         'Jour demande',
          'Retard reclamation']]
 
          all_data2.to_csv(outputfile)

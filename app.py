@@ -33,7 +33,7 @@ def loadData():
     prediction = (model.predict(df))
     df['prediction'] = prediction
     print(df['Référence GA'].loc[df['prediction'] == 1])
-    print(df.shape)      
+    print((df.loc[df['prediction'] == 1]).shape)      
     return df
 
 def findPec(X):
