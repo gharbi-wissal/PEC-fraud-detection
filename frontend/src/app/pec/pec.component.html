@@ -15,7 +15,7 @@
             <br> 
             Le résultat est donné par un algorithme de Machine Learning et est obtenu en temps réel.
             </p>
-                <form class="form" (submit)="predict(pecReference.value); pecReference.value=''">
+                <form class="form" (submit)="getPrediction(pecReference.value); pecReference.value=''">
                  <div class="form-row align-items-center">
                  <div class="col-auto">
                  <div class="md-form">
@@ -43,7 +43,7 @@
 <br>
 <main>
 <mdb-card cascade="true" narrower="true" class="col-md-12 text-center" *ngIf="predic">
-            <h2 class="card-header-title cyan-text"><strong>Résultat de prédiction</strong></h2>
+<h2 class="card-header light-color cyan-text"><strong><i class="far fa-eye"></i> Résultat de prédiction <i class="far fa-eye"></i></strong></h2>
 
 <mdb-card-body cascade="true" class="text-center">
     <mdb-card-text class="row justify-content-center">
@@ -106,13 +106,13 @@
                    <td><strong>Prédiction</strong></td>
                    <td class="text-center">                                  
                    <span *ngIf="pred['prediction'] == 0; else elseBlock" class=" label label-success">
-                   <i class="fa fa-user-check fa-2x text-success"></i> Non Fraude
+                   <i class="fas fa-user-check fa-2x text-success"></i> Non Fraude
                  <!-- <br>
                 <i class="fa fa-user-secret fa-lg text-danger"></i> 20% Fraude-->
                 </span> 
 
                    <ng-template #elseBlock>
-                   <i class="fa fa-user-secret fa-2x text-danger"></i> Fraude
+                   <i class="fas fa-user-secret fa-2x text-danger"></i> Fraude
                     <!--<br>
                     <i class="fa fa-user-check fa-lg text-success"></i> 20% Non Fraude-->
                    
@@ -123,7 +123,7 @@
            </tbody>
        </table>
        </div>
-       <ng-template #other_content><h3>Dossier non trouvé <i class="fa fa-frown-o" aria-hidden="true"></i>
+       <ng-template #other_content><h3>Dossier non trouvé <i class="fas fa-frown-open"></i>
 </h3></ng-template>
        </mdb-card-text>
 

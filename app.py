@@ -33,7 +33,6 @@ def loadData():
     prediction = (model.predict(df))
     df['prediction'] = prediction
     print(df['Référence GA'].loc[df['prediction'] == 1])
-    print((df.loc[df['prediction'] == 1]).shape)      
     return df
 
 def findPec(X):
@@ -68,9 +67,6 @@ def predict():
         print('Train the model first')
         return ('No model here to use')
 
-@app.route('/api/metrics', methods=['Get'])
-def getMetrics():
-    return metrics 
 
 if __name__ == '__main__':
     try:
@@ -80,11 +76,6 @@ if __name__ == '__main__':
 
     model = load('modeling/model/model_final.pkl')
     print('Model loaded')
-    model_columns = load("modeling/model/model_columns.pkl") 
-    print('Model columns loaded')
-    metrics = load("modeling/model/metrics.pkl") 
-    print('Metrics columns loaded')
-    print(metrics)
     df=loadData()
 
     app.run(port=port, debug=True)
