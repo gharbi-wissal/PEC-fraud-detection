@@ -5,4 +5,5 @@ numpy==1.16.5
 joblib==0.15.1
 pandas==1.0.5
 scikit_learn==0.23.1
-xgboost==0.90
+# xgboost==0.90
+# psycopg2

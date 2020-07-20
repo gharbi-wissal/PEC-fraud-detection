@@ -4,16 +4,15 @@
     class="color-block winter-neva-gradient z-depth-2 py-4 mb-3 mx-2 text-center" cascade="true" narrower="true"
   >
     <div class="view view-cascade ">
-    
+
         <h2 class="card-header-title blue-grey-text"><strong>Prédiction des nouveaux dossiers Prise en charge</strong></h2>
-            
-           
+
+
             <div class="text-center align-center">
                 <div class="row justify-content-center">
                 <p class="col-md-9 text-center text-dark" >
-            Entrez une référence d'un dossier prise en chagre de GA et obtenez un résultat si ce dossier est plus susceptible d'être un cas de fraude ou pas. 
-            <br> 
-            Le résultat est donné par un algorithme de Machine Learning et est obtenu en temps réel.
+            Entrez une référence d'un dossier prise en chagre de GA et obtenez un résultat si ce dossier est plus susceptible d'être un cas de fraude ou pas.
+            <br>
             </p>
                 <form class="form" (submit)="getPrediction(pecReference.value); pecReference.value=''">
                  <div class="form-row align-items-center">
@@ -28,7 +27,7 @@
                 </div>
                 </div>
                 </form>
-                </div>        
+                </div>
         </div>
     </div>
     <mdb-card-body cascade="true" class="text-center">
@@ -61,11 +60,11 @@
                     <td><strong>Compagnie d'assurance</strong></td>
                     <td class="text-center">{{pred["Compagnie d'assurance"]}}</td>
                 </tr>
-                <tr mdbTableCol *ngIf="pred['Compagnie adverse']"> 
+                <tr mdbTableCol *ngIf="pred['Compagnie adverse']">
                     <td><strong>Compagnie adverse</strong></td>
                     <td class="text-center">{{pred["Compagnie adverse"]}}</td>
                 </tr>
-                
+
                 <tr mdbTableCol *ngIf="pred['Expert']">
                     <td><strong>Expert</strong></td>
                     <td class="text-center">{{pred["Expert"]}}</td>
@@ -104,22 +103,22 @@
                </tr>
                <tr mdbTableCol>
                    <td><strong>Prédiction</strong></td>
-                   <td class="text-center">                                  
+                   <td class="text-center">
                    <span *ngIf="pred['prediction'] == 0; else elseBlock" class=" label label-success">
                    <i class="fas fa-user-check fa-2x text-success"></i> Non Fraude
                  <!-- <br>
                 <i class="fa fa-user-secret fa-lg text-danger"></i> 20% Fraude-->
-                </span> 
+                </span>
 
                    <ng-template #elseBlock>
                    <i class="fas fa-user-secret fa-2x text-danger"></i> Fraude
                     <!--<br>
                     <i class="fa fa-user-check fa-lg text-success"></i> 20% Non Fraude-->
-                   
+
                    </ng-template>secret
                    </td>
                </tr>
-           
+
            </tbody>
        </table>
        </div>
